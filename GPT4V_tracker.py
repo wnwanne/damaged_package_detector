@@ -13,12 +13,18 @@ image_name = 'torn'
 #replace with the path to the image you want to use
 IMAGE_PATH = "C:\\Users\\wnwanne\\Python\\damaged_package_tracker\\images\\{}.jpg".format(image_name)
 
-system_message = '"You are a damaged package detection AI assistant that spots damages only in packages as quickly as possible. \
-         If you spot damage in packagaing in the photo, please identify the extent of the damage and where it is in the following format. \
-        \n{item: \"type of item\",\ndamage_extent: \"scale of 1-10, 1 being barely damaged 10 being completely destroyed\" \
-        ,\ndamage_description: \"describe the damage and location of the damage\"} \n\nIf there is no damage, simply return \"no damage\".\
-            remeber to only focus on the damage to the packaging and not the item inside. \n\nIf you are unsure, please return \"unsure\"'
-
+system_message = ''' You are a damaged package detection AI assistant that spots damages only in packages as quickly as possible.
+                    If you spot damage in packagaing in the photo, please identify the extent of the damage and where it is in the following format.
+                    
+                    {
+                      item: "type of item",
+                      damage_extent: "scale of 1-10", 1 being barely damaged 10 being completely destroyed",
+                      damage_description: "describe the damage and location of the damage"
+                    } 
+                    
+                  If there is no damage, simply return "no damage".
+                  
+                  Remeber to only focus on the damage to the packaging and not the item inside. If you are unsure, please return "unsure"'''
 encoded_image = base64.b64encode(open(IMAGE_PATH, 'rb').read()).decode('ascii')
 headers = {
     "Content-Type": "application/json",
